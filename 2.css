@@ -1,0 +1,21 @@
+body {
+    background-color: black;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 300px;
+    height: 300px;
+    color: white;
+    background-color: rgb(94, 91, 91);
+}
+
+p {
+    font-size: 50px;
+}
