@@ -16,6 +16,10 @@ div {
     background-color: rgb(94, 91, 91);
 }
 
+div:hover {
+    cursor: pointer;
+}
+
 p {
     font-size: 50px;
 }
