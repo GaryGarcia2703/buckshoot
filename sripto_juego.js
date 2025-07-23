@@ -62,7 +62,6 @@ function resultado() {
 }
 
 function nextTurn() {
-    if (balas[0])
         if (jugadores[0] == "j1") {
             jugadores.shift()
             jugadores.push("j1")
@@ -70,6 +69,7 @@ function nextTurn() {
             jugadores.shift
             jugadores.push("j2")
         }
+        console.log(`Agora é a vez de: ${jugadores[0]}`)
 }
 
 console.log("--- Rodada 1 ---")
