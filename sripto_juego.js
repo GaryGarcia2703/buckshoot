@@ -1,10 +1,14 @@
-let pistola = document.querySelector('p#pistola')
 let res = document.querySelector('div#res')
 let repeatbtn = document.createElement('button')
 repeatbtn.innerText = 'Proximo Round?'
+
 let balas = []
+let jugadores = [] //Array de jugadores
 let roja = 'Buckshoot'
 let azul = 'Blank'
+
+jugadores.push("j1")
+jugadores.push("j2")
 
 function shuffle(array) {
     for(let i = array.length -1; i > 0; i--) {
@@ -27,12 +31,12 @@ function repeat() {
     shuffle(balas)
     console.log(`balas embaralhadas ${balas}`)
 
-    res.innerHTML = "Novo round iniciado";
-    res.style.backgroundColor = "#161316";
+    res.innerHTML = "Novo round iniciado"
+    res.style.backgroundColor = "#161316"
 
 
     if (res.contains(repeatbtn)) {
-        res.removeChild(repeatbtn);
+        res.removeChild(repeatbtn)
     }
 
 }
@@ -54,7 +58,26 @@ function resultado() {
         res.style.backgroundColor = "blue"
     }
     
-    balas.shift();
+    balas.shift()
 }
+
+function nextTurn() {
+        if (jugadores[0] == "j1") {
+            jugadores.shift()
+            jugadores.push("j1")
+        } else {
+            jugadores.shift
+            jugadores.push("j2")
+        }
+        console.log(`Agora é a vez de: ${jugadores[0]}`)
+}
+
+console.log("--- Rodada 1 ---")
+console.log("Estado inicial:", jugadores) 
+nextTurn()
+console.log("Após nextTurn():", jugadores) 
+console.log(`turno de: ${jugadores[0]}`) 
+
+
 repeatbtn.addEventListener('click' , repeat)
 repeat()

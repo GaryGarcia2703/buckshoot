@@ -5,11 +5,14 @@ body {
     color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
     text-align: center;
+    height: 90vh;
+    overflow: hidden;
+    margin: 0;
 }
 
 h1 {
     margin-bottom: -10px;
-    font-size: 150px;
+    font-size: 100px;
 }
 
 p {
