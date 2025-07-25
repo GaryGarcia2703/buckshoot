@@ -42,23 +42,31 @@ function repeat() {
 }
 
 function resultado() {
-     if (balas.length === 0) {
+    if (balas.length === 0) {
         res.innerHTML = "Acabaram as balas"
         res.style.backgroundColor = "gray"
         res.appendChild(repeatbtn)
         return
     }
 
-    if (balas[0] === roja) {
-        res.innerHTML = "💥 Tiro!"
-        res.style.backgroundColor = "red"
-
+    let imgdealer = document.querySelector('img#img-dealer')
+    if (jugadores[0] === "j1") {
+        imgdealer.src = 'img/manop2.png'
     } else {
-        res.innerHTML = "🔵 Vazia"
+        imgdealer.src = 'img/manop.png'
+    }
+
+
+    if (balas[0] === roja) {
+        res.innerHTML = `💥 Tiro em ${jugadores[0]}!`
+        res.style.backgroundColor = "red"
+    } else {
+        res.innerHTML = `🔵 Bala vazia em ${jugadores[0]}`
         res.style.backgroundColor = "blue"
     }
-    
-    balas.shift()
+
+    balas.shift()        // remove a bala usada
+    nextTurn()     
 }
 
 function nextTurn() {

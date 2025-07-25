@@ -5,6 +5,16 @@ body {
     font-size: 20px;
 }
 
+img#img-dealer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    z-index: 2; /* Garante que a imagem esteja acima da div */
+    width: 300px;
+    pointer-events: none; /* Permite que cliques passem pela imagem */
+}
+
 div {
     position: absolute;
     top: 50%;
