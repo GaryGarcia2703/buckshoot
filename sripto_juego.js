@@ -66,11 +66,26 @@ function nextTurn() {
             jugadores.shift()
             jugadores.push("j1")
         } else {
-            jugadores.shift
+            jugadores.shift()
             jugadores.push("j2")
         }
         console.log(`Agora é a vez de: ${jugadores[0]}`)
 }
+
+function marcador() {
+    nextTurn() 
+    let imgdealer = document.querySelector('img#img-dealer')
+    if (jugadores[0] == "j1") {
+        imgdealer.src = 'img/manop2.png'
+    } else {
+        imgdealer.src = 'img/manop.png'
+    }
+
+}
+
+
+
+
 
 console.log("--- Rodada 1 ---")
 console.log("Estado inicial:", jugadores) 
