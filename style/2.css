@@ -3,37 +3,15 @@ body {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;  
     font-size: 20px;
-}
-
-img#img-dealer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -150%);
-    z-index: 2; /* Garante que a imagem esteja acima da div */
-    width: 300px;
-    pointer-events: none; /* Permite que cliques passem pela imagem */
+    text-align: center;
 }
 
 div {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    font-size: 20px;
-    width: 300px;
-    height: 300px;
-    border-radius: 10px;
-    color: white;
-    background-color: rgb(94, 91, 91);
-    background-color: white;
-    display: flex;
-    align-items: center;      /* centraliza verticalmente */
-    justify-content: center;  /* centraliza horizontalmente */
-    text-align: center;
-    font-size: 24px;
-    border: 2px solid black;
+    width: 40%;
+    margin: 0 auto;     
+    margin-bottom: -10px;  
+    padding: 5px;
+    text-align: center; 
 }
 
 div:hover {
