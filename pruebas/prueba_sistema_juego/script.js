@@ -30,6 +30,6 @@ function atirarnele() {
 }
 
 function atiraremvoce() {
-    let = imagemEscopeta2 = escopeta.querySelector('img')
+    let imagemEscopeta2 = escopeta.querySelector('img')
     imagemEscopeta2.src = '../../img/escopetaPP.png'
 }
