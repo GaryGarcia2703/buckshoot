@@ -9,6 +9,11 @@ let jugadores = [] //Array de jugadores
 let roja = 'Buckshoot'
 let azul = 'Blank'
 
+let vidaJogador1 = 2
+let vidaJogador2 = 2
+let cartuchoAtual = true
+let jugadorActual = jugadores[0]
+
 jugadores.push("j1")
 jugadores.push("j2")
 
@@ -34,8 +39,6 @@ function repeat() {
     console.log(`balas embaralhadas ${balas}`)
 
     res.innerHTML = "Novo round iniciado"
-    res.style.backgroundColor = "#161316"
-
 
     if (res.contains(repeatbtn)) {
         res.removeChild(repeatbtn)
@@ -52,28 +55,41 @@ function opciones() {
     document.body.appendChild(dispararle)
 
     // Adiciona o evento logo após criar o botão
-    dispararle.addEventListener('click' , atirarnele)
+    dispararle.addEventListener('click' , disparar)
 
     let dispararte = document.createElement('button')
     dispararte.id = 'dispararte'
     dispararte.textContent = 'Atirar em você'
     document.body.appendChild(dispararte)
-
-    dispararte.addEventListener('click' , atiraremvoce)
+    // Adiciona o evento logo após criar o botão
+    dispararte.addEventListener('click' , disparar)
     }
 }
 escopeta.addEventListener('click', opciones)
 
-function atirarnele() {
-    let imagemEscopeta = escopeta.querySelector('img') 
-    // seleciona a imagem atual da escopeta
-    imagemEscopeta.src = '../../img/escopetaP2.png'    
+function disparar(tipoDeAlvo) {
+    let alvoReal
+    let armaimg = document.querySelector('img#escopeta')
+
+    if (jugadorActual === 'j1'){
+        if (tipoDeAlvo === 'Ami') {
+            alvoReal = 'j1'
+            armaimg.src = '../../img/escopetaP2.png'
+        } else {
+            alvoReal = 'j2'
+            armaimg.scr = '../../img/escopetaPP.png'
+        }
+    } else {
+        if (tipoDeAlvo === 'Ami' ){
+            alvoReal = 'j2'
+            armaimg.src = '../../img/escopetaP2.png'
+        } else {
+            alvoReal = 'Jogador1'
+            armaimg.src = '../../img/escopetaP2.png' 
+        }
+    }
 }
 
-function atiraremvoce() {
-    let  imagemEscopeta2 = escopeta.querySelector('img')
-    imagemEscopeta2.src = '../../img/escopetaPP.png'
-}
 
 function resultado() {
     if (balas.length === 0) {
@@ -113,20 +129,6 @@ function nextTurn() {
         }
         console.log(`Agora é a vez de: ${jugadores[0]}`)
 }
-
-function marcador() {
-    nextTurn() 
-    let imgdealer = document.querySelector('img#img-dealer')
-    if (jugadores[0] == "j1") {
-        imgdealer.src = 'img/manop2.png'
-    } else {
-        imgdealer.src = 'img/manop.png'
-    }
-
-}
-
-
-
 
 
 console.log("--- Rodada 1 ---")

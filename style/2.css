@@ -6,6 +6,29 @@ body {
     text-align: center;
 }
 
+div#jugadores {
+    color: white;
+    display: flex; 
+    justify-content: center; 
+    gap: 1150px; 
+
+    width: 100%; 
+    margin: 0; 
+    padding: 0; 
+}
+
+h2 {
+    font-size: 70px;
+}
+
+div#res {
+    background-color: rgb(41, 38, 38);
+    color: white;
+    border-radius: 5px;
+    padding: 30px;
+    font-size: 25px;
+}
+
 div {
     width: 40%;
     margin: 0 auto;     
@@ -24,7 +47,7 @@ p {
 
 button {
     margin: 0 auto;
-    margin: 10px;
+    margin: 40px;
     border: none;
     font-size: 20px;
     border-radius: 5px;
