@@ -47,27 +47,27 @@ function repeat() {
 }
 
 function opciones() {
-    if (!document.getElementById('dispararle') && !document.getElementById('dispararte')) {
-    
     let dispararle = document.createElement('button')
     dispararle.id = 'dispararle'
     dispararle.textContent = 'Atirar nele'
     document.body.appendChild(dispararle)
 
-    // Adiciona o evento logo após criar o botão
-    dispararle.addEventListener('click' , disparar)
+    dispararle.addEventListener('click', () => disparar('Enemy'))
 
     let dispararte = document.createElement('button')
     dispararte.id = 'dispararte'
     dispararte.textContent = 'Atirar em você'
     document.body.appendChild(dispararte)
-    // Adiciona o evento logo após criar o botão
-    dispararte.addEventListener('click' , disparar)
-    }
+    
+    dispararte.addEventListener('click', () => disparar('Ami'))
+
 }
 escopeta.addEventListener('click', opciones)
 
 function disparar(tipoDeAlvo) {
+    //remove o botão quando selecionado
+    document.getElementById('dispararte')?.remove()
+    document.getElementById('dispararle')?.remove()
     let alvoReal
     let armaimg = document.querySelector('img#escopeta')
 
@@ -77,17 +77,18 @@ function disparar(tipoDeAlvo) {
             armaimg.src = '../../img/escopetaP2.png'
         } else {
             alvoReal = 'j2'
-            armaimg.scr = '../../img/escopetaPP.png'
+            armaimg.src = '../../img/escopetaPP.png'
         }
     } else {
         if (tipoDeAlvo === 'Ami' ){
             alvoReal = 'j2'
-            armaimg.src = '../../img/escopetaP2.png'
+            armaimg.src = '../../img/escopetaPP.png'
         } else {
             alvoReal = 'Jogador1'
             armaimg.src = '../../img/escopetaP2.png' 
         }
     }
+    resultado()
 }
 
 
