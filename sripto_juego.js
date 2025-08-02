@@ -1,3 +1,4 @@
+
 let res = document.querySelector('div#res')
 let repeatbtn = document.createElement('button')
 repeatbtn.innerText = 'Proximo Round?'
@@ -9,10 +10,7 @@ let jugadores = [] //Array de jugadores
 let roja = 'Buckshoot'
 let azul = 'Blank'
 
-let vidaJogador1 = 2
-let vidaJogador2 = 2
 let cartuchoAtual = true
-let jugadorActual = jugadores[0]
 
 jugadores.push("j1")
 jugadores.push("j2")
@@ -47,21 +45,24 @@ function repeat() {
 }
 
 function opciones() {
-    let dispararle = document.createElement('button')
-    dispararle.id = 'dispararle'
-    dispararle.textContent = 'Atirar nele'
-    document.body.appendChild(dispararle)
+    if (!document.getElementById('dispararle') && !document.getElementById('dispararte')) {
 
-    dispararle.addEventListener('click', () => disparar('Enemy'))
+        let dispararle = document.createElement('button')
+        dispararle.id = 'dispararle'
+        dispararle.textContent = 'Atirar nele'
+        document.body.appendChild(dispararle)
 
-    let dispararte = document.createElement('button')
-    dispararte.id = 'dispararte'
-    dispararte.textContent = 'Atirar em você'
-    document.body.appendChild(dispararte)
-    
-    dispararte.addEventListener('click', () => disparar('Ami'))
+        dispararle.addEventListener('click', () => disparar('Enemy'))
 
+        let dispararte = document.createElement('button')
+        dispararte.id = 'dispararte'
+        dispararte.textContent = 'Atirar em você'
+        document.body.appendChild(dispararte)
+        
+        dispararte.addEventListener('click', () => disparar('Ami'))
+    }
 }
+
 escopeta.addEventListener('click', opciones)
 
 function disparar(tipoDeAlvo) {
@@ -84,41 +85,60 @@ function disparar(tipoDeAlvo) {
             alvoReal = 'j2'
             armaimg.src = '../../img/escopetaPP.png'
         } else {
-            alvoReal = 'Jogador1'
+            alvoReal = 'j1'
             armaimg.src = '../../img/escopetaP2.png' 
         }
     }
-    resultado()
+resultado()
 }
 
 
 function resultado() {
+    let imgdealer = document.querySelector('img#img-dealer') // A mão aponta pro jogador atual
+
+    let resJugadorActual = document.querySelector('div#turnoJugador')
+    resJugadorActual.innerHTML = ''
+
+    
+
+    // Cria e exibe o turno do jogador
+    let turnoDelJugador = document.createElement('h3')
+    turnoDelJugador.id = 'turno-jogador'
+    turnoDelJugador.textContent = `🔄 Turno do jogador: ${jugadorActual}`
+    resJugadorActual.appendChild(turnoDelJugador)
+
+    // Verifica se acabaram as balas
     if (balas.length === 0) {
-        res.innerHTML = "Acabaram as balas"
+        let fim = document.createElement('p')
+        fim.textContent = "Acabaram as balas"
         res.style.backgroundColor = "gray"
+        res.appendChild(fim)
         res.appendChild(repeatbtn)
         return
     }
 
-    let imgdealer = document.querySelector('img#img-dealer')
-    if (jugadores[0] === "j1") {
+    // Atualiza a imagem da mão do dealer
+    if (jugadorActual === "j1") {
         imgdealer.src = 'img/manop2.png'
     } else {
-        imgdealer.src = 'img/manop.png'
+        imgdealer.src = 'img/manoPP.png'
     }
 
-
+    // Resultado do tiro
+    let resultadoTexto = document.createElement('p')
     if (balas[0] === roja) {
-        res.innerHTML = `💥 Tiro em ${jugadores[0]}!`
+        resultadoTexto.textContent = `💥 Tiro em ${jugadorActual}!`
         res.style.backgroundColor = "red"
     } else {
-        res.innerHTML = `🔵 Bala vazia em ${jugadores[0]}`
+        resultadoTexto.textContent = `🔵 Bala vazia em ${jugadorActual}`
         res.style.backgroundColor = "blue"
     }
+    res.appendChild(resultadoTexto)
 
     balas.shift()        // remove a bala usada
     nextTurn()     
 }
+
 
 function nextTurn() {
         if (jugadores[0] == "j1") {
@@ -129,6 +149,7 @@ function nextTurn() {
             jugadores.push("j2")
         }
         console.log(`Agora é a vez de: ${jugadores[0]}`)
+        jugadorActual = jugadores[0] // Atualiza el jugador actual
 }
 
 

@@ -17,6 +17,11 @@ div#jugadores {
     padding: 0; 
 }
 
+div#turnoJugador {
+    color: white;
+    font-size: 30px;
+}
+
 h2 {
     font-size: 70px;
 }
