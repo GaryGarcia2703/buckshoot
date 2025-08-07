@@ -11,6 +11,9 @@ let roja = 'Buckshoot'
 let azul = 'Blank'
 
 let cartuchoAtual = true
+let alvoAtual = null
+let tipoDeBalaAtual = null
+
 
 jugadores.push("j1")
 jugadores.push("j2")
@@ -69,24 +72,23 @@ function disparar(tipoDeAlvo) {
     //remove o botão quando selecionado
     document.getElementById('dispararte')?.remove()
     document.getElementById('dispararle')?.remove()
-    let alvoReal
     let armaimg = document.querySelector('img#escopeta')
 
     if (jugadorActual === 'j1'){
         if (tipoDeAlvo === 'Ami') {
-            alvoReal = 'j1'
-            armaimg.src = '../../img/escopetaP2.png'
-        } else {
-            alvoReal = 'j2'
+            alvoAtual = 'j1'
             armaimg.src = '../../img/escopetaPP.png'
+        } else {
+            alvoAtual = 'j2'
+            armaimg.src = '../../img/escopetaP2.png'
         }
     } else {
         if (tipoDeAlvo === 'Ami' ){
-            alvoReal = 'j2'
-            armaimg.src = '../../img/escopetaPP.png'
+            alvoAtual = 'j2'
+            armaimg.src = '../../img/escopetaP2.png'
         } else {
-            alvoReal = 'j1'
-            armaimg.src = '../../img/escopetaP2.png' 
+            alvoAtual = 'j1'
+            armaimg.src = '../../img/escopetaPP.png' 
         }
     }
 resultado()
@@ -94,12 +96,15 @@ resultado()
 
 
 function resultado() {
+    let resultadoAnterior = document.querySelector('p#tipoDeBala')
+    if (resultadoAnterior) {
+        resultadoAnterior.remove()
+    }
+
     let imgdealer = document.querySelector('img#img-dealer') // A mão aponta pro jogador atual
 
     let resJugadorActual = document.querySelector('div#turnoJugador')
     resJugadorActual.innerHTML = ''
-
-    
 
     // Cria e exibe o turno do jogador
     let turnoDelJugador = document.createElement('h3')
@@ -124,20 +129,43 @@ function resultado() {
         imgdealer.src = 'img/manoPP.png'
     }
 
-    // Resultado do tiro
+    // Cria um novo parágrafo com o resultado do tiro
     let resultadoTexto = document.createElement('p')
-    if (balas[0] === roja) {
-        resultadoTexto.textContent = `💥 Tiro em ${jugadorActual}!`
-        res.style.backgroundColor = "red"
-    } else {
-        resultadoTexto.textContent = `🔵 Bala vazia em ${jugadorActual}`
-        res.style.backgroundColor = "blue"
-    }
-    res.appendChild(resultadoTexto)
+    resultadoTexto.id = 'tipoDeBala'
 
+    let armaimg = document.querySelector('img#escopeta')
+
+    // Verifica o tipo de bala (a próxima a ser usada)
+    tipoDeBalaAtual = balas[0] // salva se for 'Buckshoot' ou 'Blank'
+
+if (tipoDeBalaAtual === roja) {
+    resultadoTexto.textContent = `💥`
+    res.style.backgroundColor = "red"
+
+    // Atualiza a imagem da escopeta (se quiser mudar após o tiro)
+    if (alvoAtual === 'j1') {
+        armaimg.src = '../../img/escopetaPP.png' // imagem de impacto no j1
+    } else {
+        armaimg.src = '../../img/escopetaP2.png' // impacto no j2
+    }
+
+} else {
+    resultadoTexto.textContent = `🔵 `
+    res.style.backgroundColor = "blue"
+
+    // Atualiza a imagem para bala falsa (se você tiver imagens diferentes)
+    if (alvoAtual === 'j1') {
+        armaimg.src = '../../img/escopetaPP.png' // tiro falso no j1 (opcional)
+    } else {
+        armaimg.src = '../../img/escopetaP2.png' // tiro falso no j2 (opcional)
+    }
+}
+
+res.appendChild(resultadoTexto)
+        
     balas.shift()        // remove a bala usada
     nextTurn()     
-}
+}     
 
 
 function nextTurn() {
