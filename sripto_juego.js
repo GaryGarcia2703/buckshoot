@@ -96,6 +96,7 @@ resultado()
 
 
 function resultado() {
+    res.innerHTML = ''
     let resultadoAnterior = document.querySelector('p#tipoDeBala')
     if (resultadoAnterior) {
         resultadoAnterior.remove()

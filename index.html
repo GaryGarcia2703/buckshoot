@@ -1,26 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/bala.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="shortcut icon" href="../../img/bala.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style/2.css">
     <title>Buckshoot Roulette</title>
-
 </head>
 <body>
-    <audio controls autoplay>
-            <source src="audio/Buckshot Roulette-Main Menu.mp3" type="audio/mpeg">
-    </audio>
-    <h1>Buckshoot</h1> 
-    <h1>Roulette</h1>
 
-    <p>
-        <a href="juego.html">Start</a>
-    </p>
+    <!-- ===== Jogadores ===== -->
+    <div id="jugadores">
+        <h2>J1</h2>
+        <h2>J2</h2>
+    </div>
 
-    <p>
-        <a href="https://github.com/GaryGarcia2703" target="_blank">Github</a>
-    </p>
+    <!-- ===== Turno atual ===== -->
+    <div id="turnoJugador"></div>
+
+    <!-- ===== Dealer / Mão ===== -->
+    <div id="dealer">
+        <img id="img-dealer" src="../../img/manoPP.png" alt="Mão do dealer">
+    </div>
+
+    <!-- ===== Escopeta / Arma ===== -->
+    <div id="escopeta-container">
+        <img id="escopeta" src="../../img/escopetaPP.png" alt="Escopeta">
+    </div>
+
+    <!-- ===== Botões de ação ===== -->
+    <div id="botoes"></div>
+
+    <!-- ===== Resultado ===== -->
+    <div id="res"></div>
+
+    <!-- ===== Script JS ===== -->
+    <script src="sripto_juego.js"></script>
+
 </body>
 </html>
