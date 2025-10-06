@@ -60,7 +60,7 @@ function repeat(resetVidas = false) {
     console.log(`🔫 Turno de início: ${jugadorActual}`);
 }
 
-function opciones() {
+function opciones() { /// aqui eleminaremos los dos botones y solamente agarraremos lasa img de la escopeta
     if (!document.getElementById('dispararle') && !document.getElementById('dispararte')) {
         let dispararle = document.createElement('button');
         dispararle.id = 'dispararle';

@@ -1,0 +1,1 @@
+creare un item para que vuelva a rerolear la balas, luego de quitar los dos botones y solamente dejar uno
