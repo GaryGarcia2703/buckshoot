@@ -15,12 +15,11 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
+
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     text-align: center;
-    min-height: 100vh;
-    padding-bottom: 40px;
 }
 
 /* ===== Cabeçalho: jogadores ===== */
@@ -29,46 +28,27 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 18px 40px;
-}
-
-#jugadores h2 {
-    font-size: 56px;
-    letter-spacing: 2px;
-}
-
-/* ===== Turno do jogador ===== */
-#turnoJugador {
-    color: #fff;
-    font-size: 26px;
-    margin: 16px 0;
-}
-
-/* ===== Container do dealer (mão) e da arma ===== */
-#dealer,
-#escopeta-container {
-    width: 100%;
-    max-width: 420px;
-    margin: 10px auto;
     
 }
 
-/* imagens da mão e da arma: tamanhos e animação */
-#dealer img,
-#escopeta-container img {
-    width: 150px;
-    max-width: 28%;
-    display: block;
-    margin: 12px auto;
-    cursor: pointer;
-    transition: transform 300ms ease, filter 200ms ease;
-    transform-origin: 50% 50%;
+#jugadores h2 {
+    font-size: 40px;
+    letter-spacing: 2px;
 }
 
-img#escopeta {
+/* ===== Container do dealer (mão) e da arma ===== */
+img#imgdealer {
+    height: 150px;
+    width: 150px;
+}
+
+img#arma {
     cursor: pointer;
+    width: 200px;
+    height: 200px;
 } 
 
-img#escopeta:hover {
+img#arma:hover {
     border-radius: 10px;
     background-color: rgba(255, 0, 0, 0.425);
 }
@@ -78,12 +58,15 @@ img#escopeta:hover {
     background-color: rgb(41, 38, 38);
     color: white;
     border-radius: 8px;
-    padding: 28px;
-    font-size: 22px;
+    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 20px;
     width: 70%;
     max-width: 900px;
-    margin: 18px auto;
-    transition:  220ms ease;
+    margin: 10px auto;
+    margin-bottom: 10px;
+    transition: 220ms ease;
     min-height: 70px;
     display: flex;
     align-items: center;
@@ -91,29 +74,11 @@ img#escopeta:hover {
 }
 
 /* ===== Botões ===== */
-#botoes {
-    margin: 12px 0 30px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-}
 
-button {
-    margin: 6px;
-    padding: 12px 22px;
-    font-size: 18px;
-    background-color: #7a0f0f; /* vermelho escuro */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    transition: background-color 160ms ease, transform 120ms ease;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #9b1313;
-    transform: translateY(-2px);
+button#proximoRound {
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
 }
 
 /* ===== Parágrafos de resultado ===== */
@@ -138,33 +103,4 @@ button:hover {
 p {
     font-size: 20px;
     margin: 6px 0;
-}
-
-/* ===== Responsividade ===== */
-@media (max-width: 720px) {
-    #jugadores h2 {
-        font-size: 42px;
-    }
-
-    #dealer img,
-    #escopeta-container img {
-        width: 110px;
-        max-width: 34%;
-    }
-
-    #res {
-        width: 88%;
-        padding: 18px;
-        font-size: 18px;
-        min-height: 60px;
-    }
-
-    #tipoDeBala {
-        font-size: 28px;
-    }
-
-    button {
-        font-size: 16px;
-        padding: 10px 18px;
-    }
 }

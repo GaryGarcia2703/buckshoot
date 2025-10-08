@@ -1,10 +1,11 @@
 // === ELEMENTOS DO DOM ===
 let res = document.querySelector('div#res');
-let escopeta = document.querySelector('div#escopeta');
+let armaimg = document.querySelector('img#arma');
 let mano = document.querySelector('img#mano');
 
 // botão criado desde o início 
 let repeatbtn = document.createElement('button');
+repeatbtn.id = "proximoRound"
 repeatbtn.innerText = 'Proximo Round?';
 
 // === VARIÁVEIS DE ESTADO / JOGO ===
@@ -40,9 +41,10 @@ function repeat(resetVidas = false) {
 
     // Reinicia balas
     balas = [];
-    for (let i = 0; i < 3; i++) balas.push(roja);
-    for (let i = 0; i < 3; i++) balas.push(azul);
+    for (let i = 0; i < 5; i++) balas.push(roja);
+    for (let i = 0; i < 5; i++) balas.push(azul);
     shuffle(balas);
+    console.log(balas)
 
     // Reinicia turno
     jugadores = ["j1", "j2"];
@@ -60,45 +62,23 @@ function repeat(resetVidas = false) {
     console.log(`🔫 Turno de início: ${jugadorActual}`);
 }
 
-function opciones() { /// aqui eleminaremos los dos botones y solamente agarraremos lasa img de la escopeta
-    if (!document.getElementById('dispararle') && !document.getElementById('dispararte')) {
-        let dispararle = document.createElement('button');
-        dispararle.id = 'dispararle';
-        dispararle.textContent = 'Atirar nele';
-        document.body.appendChild(dispararle);
-        dispararle.addEventListener('click', () => disparar('Enemy'));
-
-        let dispararte = document.createElement('button');
-        dispararte.id = 'dispararte';
-        dispararte.textContent = 'Atirar em você';
-        document.body.appendChild(dispararte);
-        dispararte.addEventListener('click', () => disparar('Ami'));
-    }
-}
-
-escopeta.addEventListener('click', opciones);
-
-function disparar(tipoDeAlvo) {
-    document.getElementById('dispararte')?.remove();
-    document.getElementById('dispararle')?.remove();
-
-    // Determina quem leva o tiro
-    if (jugadorActual === 'j1') {
-        alvoAtual = tipoDeAlvo === 'Ami' ? 'j1' : 'j2';
+function Atirar() {
+    if (jugadorActual === "j1") {
+        alvoAtual = "j2"
     } else {
-        alvoAtual = tipoDeAlvo === 'Ami' ? 'j2' : 'j1';
+        alvoAtual = "j1"
     }
 
-    // Atualiza a imagem da escopeta de acordo com o alvo
-    let armaimg = document.querySelector('img#escopeta');
     armaimg.src = alvoAtual === 'j1' ? '../../img/escopetaPP.png' : '../../img/escopetaP2.png';
 
-    resultado();
+    resultado()
 }
+armaimg.addEventListener("click" , Atirar)
+
 
 function resultado() {
     res.innerHTML = '';
-    let imgdealer = document.querySelector('img#img-dealer');
+    let imgdealer = document.querySelector('img#imgdealer');
     let resJugadorActual = document.querySelector('div#turnoJugador');
     resJugadorActual.innerHTML = '';
 
@@ -124,13 +104,16 @@ function resultado() {
 
     let resultadoTexto = document.createElement('p');
     resultadoTexto.id = 'tipoDeBala';
+
     if (tipoDeBalaAtual === roja) {
         resultadoTexto.textContent = '💥';
         res.style.backgroundColor = 'red';
+
     } else {
         resultadoTexto.textContent = '🔵';
         res.style.backgroundColor = 'blue';
     }
+
     res.appendChild(resultadoTexto);
 
     // Atualiza vidas e verifica morte
@@ -140,17 +123,17 @@ function resultado() {
 
 function nextTurn() {
     jugadores.push(jugadores.shift());
-    jugadorActual = jugadores[1];
+    jugadorActual = jugadores[0];
     console.log(`🔄 Agora é a vez de: ${jugadorActual}`);
 }
 
 function Vidas(alvo, tipoDeBala) {
     if (tipoDeBala === roja) {
         if (alvo === 'j1') {
-            vidas_j2--;
-            console.log(`💥 O jogador 2 levou um tiro! Vidas restantes: ${vidas_j2}`);
-        } else if (alvo === 'j2') {
             vidas_j1--;
+            console.log(`💥 O jogador 1 levou um tiro! Vidas restantes: ${vidas_j1}`);
+        } else if (alvo === 'j2') {
+            vidas_j2--;
             console.log(`💥 O jogador 2 levou um tiro! Vidas restantes: ${vidas_j2}`);
         }
     }
@@ -185,7 +168,8 @@ function atualizarVidas() {
 }
 
 // === INÍCIO DO JOGO ===
-console.log("--- Rodada 1 ---");
+console.log(`--- Rodada começou ---`);
 console.log(`Turno inicial: ${jugadorActual}`);
 repeatbtn.addEventListener('click', () => repeat(true));
 repeat();
+
